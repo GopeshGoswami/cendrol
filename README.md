@@ -1,1 +1,1 @@
-cendrol
+All features present in the demo is implemented. In the main branch whenever the user clicks on the same card again, the modal closes (can be found in Home component, in "handleCardClick" function). In the branch "gopesh" this feature is removed.
