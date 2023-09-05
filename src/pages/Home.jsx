@@ -18,16 +18,10 @@ const Home = () => {
   }, []);
 
   const handleCardClick = (category) => {
-    if (selectedCard === category) {
-      setIsModalOpen(false);
-      setSelectedCategory(null);
-      setSelectedCard(null);
-    } else {
-      setSelectedCategory(category);
-      fetchJokeForCategory(category);
-      setIsModalOpen(true);
-      setSelectedCard(category);
-    }
+    setSelectedCategory(category);
+    fetchJokeForCategory(category);
+    setIsModalOpen(true);
+    setSelectedCard(category);
   };
 
   const fetchJokeForCategory = (category) => {
