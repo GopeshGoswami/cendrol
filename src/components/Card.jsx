@@ -1,7 +1,15 @@
 import React from "react";
-import { AiOutlineClose } from "react-icons/ai";
+import { AiOutlineClose, AiOutlineLoading3Quarters } from "react-icons/ai";
 
-const Card = ({ isOpen, category, onClose, joke, fetchJokeForCategory }) => {
+const Card = ({
+  isOpen,
+  category,
+  onClose,
+  joke,
+  fetchJokeForCategory,
+  jokeLoading,
+  setJokeLoading,
+}) => {
   return (
     <div
       className={`modal ${
@@ -12,19 +20,30 @@ const Card = ({ isOpen, category, onClose, joke, fetchJokeForCategory }) => {
     >
       <AiOutlineClose
         className="h-6 w-6 float-right text-white cursor-pointer"
-        onClick={() => onClose()}
+        onClick={() => {
+          onClose();
+          setJokeLoading(true);
+        }}
       />
       <>
         <h2 className="text-center text-3xl text-white font-bold capitalize">
           {category}
         </h2>
         <div className="w-full border border-black m-auto mt-6 shadow-xl flex flex-col items-center justify-center">
-          <p className="text-center font-semibold text-blue-100   font-sans  m-5 text-xl md:text-3xl">
-            {joke}
-          </p>
+          {jokeLoading ? (
+            <AiOutlineLoading3Quarters className="animate-spin text-white text-7xl" />
+          ) : (
+            <p className="text-center font-semibold text-blue-100   font-sans  m-5 text-xl md:text-3xl">
+              {joke}
+            </p>
+          )}
+
           <button
             className="px-4 py-2 bg-blue-700  my-2 mx-3 cursor-pointer lg:w-96 md:96  rounded-md hover:bg-blue-600 font-bold"
-            onClick={() => fetchJokeForCategory(category)}
+            onClick={() => {
+              fetchJokeForCategory(category);
+              setJokeLoading(true);
+            }}
           >
             Next joke
           </button>
